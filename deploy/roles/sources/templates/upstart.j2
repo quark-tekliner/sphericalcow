@@ -10,7 +10,8 @@ console log
 
 setuid {{ http_user }}
 setgid {{ http_group }}
-env LC_ALL=en_US.UTF8 PYTHONPATH=../
+env LC_ALL=en_US.UTF8
+env PYTHONPATH=../
 chdir {{ sources_dir }}src
 
 script
