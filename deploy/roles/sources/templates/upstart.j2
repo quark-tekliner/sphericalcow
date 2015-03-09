@@ -1,0 +1,21 @@
+#!upstart
+description "Sphericalcow.mobi site"
+
+start on virtual-filesystems
+stop on runlevel [016]
+
+respawn
+#respawn limit 100 5
+console log
+
+setuid {{ http_user }}
+setgid {{ http_group }}
+env LC_ALL=en_US.UTF8
+chdir {{ sources_dir }}src
+
+script
+    ../bin/gunicorn -w 4 -b 127.0.0.1:8080 app:app
+end script
+
+# Pause to limit respawns rate (sleep before restart)
+post-stop exec sleep 1

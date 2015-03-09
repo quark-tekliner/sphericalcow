@@ -1,0 +1,27 @@
+- name: make server dir
+  file: path={{ sources_dir }} state=directory owner={{ http_user }} group={{ http_group }}
+  sudo: yes
+
+- name: checkout
+  git: repo=https://github.com/quark-tekliner/sphericalcow.git dest={{ sources_dir }}
+  notify:
+    - build static
+    - update bower components
+
+- name: install python requirements
+  pip: virtualenv={{ sources_dir }} requirements={{ sources_dir }}requirements.txt
+
+- name: install nodejs requirements
+  npm: path={{ sources_dir }}src/web
+
+- name: configure nginx
+  template: src="nginx.j2" dest="/etc/nginx/sites-enabled/sphericalcow.mobi"
+  sudo: yes
+  notify:
+    - restart nginx
+
+- name: configure upstart
+  template: src="upstart.j2" dest="/etc/init/sphericalcow.conf"
+  sudo: yes
+  notify:
+    - restart sphericalcow

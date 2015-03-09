@@ -1,0 +1,10 @@
+- name: restart sphericalcow
+  sudo: yes
+  action: service name=sphericalcow state=restarted
+
+#because bower module is broken :C
+- name: update bower components
+  action: shell chdir={{ sources_dir }}src/web bower install -s -F
+
+- name: build static
+  action: shell chdir={{ sources_dir }}src/web grunt build

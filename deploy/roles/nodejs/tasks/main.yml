@@ -1,0 +1,13 @@
+- name: install packages
+  apt: pkg={{ item }}
+  with_items:
+    - npm
+    - nodejs-legacy
+  sudo: yes
+
+- name: install components
+  npm: global=yes name={{ item }}
+  with_items:
+    - grunt-cli
+    - bower
+  sudo: yes

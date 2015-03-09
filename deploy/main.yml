@@ -3,3 +3,6 @@
     - preconf
     - redis
     - nginx
+    - python
+    - nodejs
+    - sources
