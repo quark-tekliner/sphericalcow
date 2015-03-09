@@ -6,3 +6,4 @@ bottle-session
 redis
 requests
 dateutils
+gunicorn
