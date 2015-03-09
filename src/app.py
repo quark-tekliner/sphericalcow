@@ -67,7 +67,7 @@ def server_static(filepath):
     return static_file(filepath, root='./web/static')
 
 
-if __name__ == '__main__'
+if __name__ == '__main__':
     port = Conf.get('port', 8080)
     debug = Conf.get('port', False)
     run(app=app, host='localhost', port=port, debug=debug)
