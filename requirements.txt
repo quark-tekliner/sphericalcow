@@ -1,6 +1,8 @@
 beautifulsoup4
 bottle
+pyjade
 bottle-jade
 bottle-session
 redis
 requests
+dateutils
