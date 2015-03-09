@@ -61,3 +61,4 @@ target/
 /src/web/node_modules
 /src/web/bower_components
 /src/web/static/js/
+/deploy/.vagrant
