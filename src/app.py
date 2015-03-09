@@ -1,9 +1,5 @@
 import bottle_session
 import os
-import sys
-
-sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '../'))
-
 from bottle import run, Bottle, static_file
 from bottle_jade import JadePlugin
 from src.conf import Conf

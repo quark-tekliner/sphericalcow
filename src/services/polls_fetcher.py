@@ -1,8 +1,5 @@
-import os
 import sys
-from src.models.city import City
 
-sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '../../'))
 
 from src.models.poll import Poll
 from src.models.user import User
