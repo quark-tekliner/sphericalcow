@@ -18,6 +18,9 @@ lib64/
 parts/
 sdist/
 var/
+local/
+include/
+bin/
 *.egg-info/
 .installed.cfg
 *.egg
@@ -52,3 +55,5 @@ docs/_build/
 
 # PyBuilder
 target/
+
+.idea/
