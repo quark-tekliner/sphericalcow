@@ -1,0 +1,7 @@
+beautifulsoup4
+bottle
+bottle-jade
+bottle-session
+pycrypto
+redis
+requests
