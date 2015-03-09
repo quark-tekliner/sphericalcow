@@ -1,0 +1,3 @@
+- name: install
+  apt: pkg=redis-server
+  sudo: yes

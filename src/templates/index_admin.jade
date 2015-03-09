@@ -1,0 +1,49 @@
+doctype html
+html(lang="ru")
+    head
+        include ./includes/meta.jade
+        include ./includes/bootstrap.jade
+        include ./includes/vendor_scripts.jade
+        script(src="s/js/calculus_admin_app.js")
+        title cow rating
+    body
+        nav.navbar.navbar-inverse
+            .container-fluid
+                include ./includes/nav_brand.jade
+                ul.nav.navbar-nav
+                    li
+                        a(href="/sb") Рэйтинг
+                    li.active
+                        a(href="/") Опросы
+        .container(ng-app="calculusAdminApp")
+            div(ng-controller="Polls as ctrl")
+                .alert.alert-info(ng-show="loading")
+                    strong Загружаем.
+                    &nbsp;Это может быть не быстро...
+                .alert.alert-danger(ng-show="pollsLoadingError")
+                    strong Не получилось.
+                    &nbsp;Нужно посмотреть в консоль (F12), рассказать Олегу, что там было написано и обновить страницу.
+                .panel.panel-default(ng-repeat="poll in polls")
+                    button.btn.btn-success.pull-right(
+                        ng-show="poll.canSave"
+                        ng-click="ctrl.save(poll)"
+                    ) Сохранить
+                    .panel-heading
+                        strong {{ poll.date*1000 | date: shortDate }}
+                        &nbsp;{{ poll.text }}
+                    .panel-body
+                            span Множитель:
+                            input(
+                                style="width: 40px;"
+                                ng-model="poll.factor"
+                                ng-pattern="/^\d+$/"
+                                ng-change="ctrl.onFactorChange(poll)")
+                    table.table.table-hover
+                        tr(
+                            ng-repeat="answer in poll.answers"
+                            ng-class="{success: answer.isCorrect, danger: answer.isIncorrect}")
+                            td {{answer.text}}
+                            td(style="width: 10%;")
+                                a(href, ng-click="ctrl.markAnswerAsCorrect(poll, answer)") Верный ответ
+                            td(style="width: 20%;")
+                                a(href, ng-click="ctrl.markAnswerAsIncorrect(poll, answer)") Условие некорректно

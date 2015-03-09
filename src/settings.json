@@ -1,0 +1,14 @@
+{
+    "port": 8080,
+    "debug": true,
+
+    "db_host": "localhost",
+    "db_port": 6379,
+    "db_index": 1,
+
+    "vk_app_id": 4073363,
+    "vk_app_secret": "QSenVnkKXUBDljtnuS4d",
+    "vk_owner": "-58182794",
+
+    "session_db_index": 7
+}

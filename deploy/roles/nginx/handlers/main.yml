@@ -1,0 +1,3 @@
+- name: restart
+  sudo: yes
+  action: service name=nginx state=reloaded

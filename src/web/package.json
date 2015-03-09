@@ -1,0 +1,17 @@
+{
+  "name": "calculus",
+  "version": "0.0.1",
+  "description": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "quark <quark@xakep.ru>",
+  "license": "MIT",
+  "devDependencies": {
+    "grunt": "~0.4.5",
+    "browserify": "~9.0.3",
+    "grunt-browserify": "~3.5.0",
+    "coffeeify": "~1.0.0",
+    "grunt-contrib-watch": "~0.6.1"
+  }
+}

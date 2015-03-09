@@ -1,0 +1,27 @@
+doctype html
+html(lang="ru")
+    head
+        include ./includes/meta.jade
+        include ./includes/bootstrap.jade
+        include ./includes/vendor_scripts.jade
+        script(src="s/js/scoreboard_app.js")
+        title cow rating
+    body
+        nav.navbar.navbar-inverse
+            .container-fluid
+                include ./includes/nav_brand.jade
+                ul.nav.navbar-nav.navbar-right
+                    li
+                        a(href="./login") Войти
+                            //button.btn.btn-primary.navbar-btn Войти
+        .container(ng-app="scoreboardApp")
+            table.table(ng-controller="Scoreboard as ctrl")
+                tr(ng-repeat="user in users", ng-class="{info: user.is_current_user}")
+                    td {{ $index+1 }}
+                    td
+                        a(ng-href="https://vk.com/id{{ user.id}}")
+                            img(ng-src="{{user.pic}}")
+                    td
+                        a(ng-href="https://vk.com/id{{ user.id}}") {{ user.name}}
+                    td {{ user.city}}
+                    td {{ user.score}}

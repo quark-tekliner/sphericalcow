@@ -1,0 +1,10 @@
+- name: install tools
+  apt: pkg={{ item }}
+  with_items:
+    - htop
+    - mc
+  sudo: yes
+
+- name: make server dir
+  file: path=/server/httpd state=directory owner={{ http_user }} group={{ http_group }}
+  sudo: yes
