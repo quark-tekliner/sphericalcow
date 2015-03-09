@@ -57,3 +57,6 @@ docs/_build/
 target/
 
 .idea/
+
+/src/web/node_modules
+/src/web/bower_components
