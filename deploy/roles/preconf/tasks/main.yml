@@ -1,5 +1,6 @@
 - name: update
   apt: update_cache=yes cache_valid_time=36000
+  sudo: yes
 
 - name: install packages
   apt: pkg={{ item }}
