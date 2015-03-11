@@ -1,2 +1,2 @@
-http_user: ubuntu
-http_group: ubuntu
+http_user: www-data
+http_group: www-data
