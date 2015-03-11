@@ -12,6 +12,7 @@ setuid {{ http_user }}
 setgid {{ http_group }}
 env LC_ALL=en_US.UTF8
 env PYTHONPATH=../
+env LD_LIBRARY_PATH=../vendor/lib
 chdir {{ sources_dir }}src
 
 script
