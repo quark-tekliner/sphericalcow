@@ -4,7 +4,6 @@ from src.utils.vk import Vk
 
 
 class User(Model):
-
     def __init__(self, uid=None, token=None, pic=None, name=None, city=None):
         self._uid = uid
         self._token = token
@@ -41,8 +40,10 @@ class User(Model):
 
     @city.setter
     def city(self, value):
+        if value is None:
+            return
         try:
-            value = int(value)
+            int(value)
         except ValueError:
             self._city = value
         else:
@@ -71,19 +72,19 @@ class User(Model):
     def save(self):
         self._db.hmset(
             self.key, {
-            'uid': self._uid,
-            'token': self._token,
-            'pic': self._pic,
-            'name': self._name,
-            'city': self._city,
-        })
+                'uid': self._uid,
+                'token': self._token,
+                'pic': self._pic,
+                'name': self._name,
+                'city': self._city,
+            })
 
     def city_should_be_requested(self):
         return self._city is None and self._city_id is not None
 
     @classmethod
     def get_any_admin_token(cls):
-        #todo: raise when token is None
+        # todo: raise when token is None
         id = cls._db.srandmember('admins', 1)
         return cls._db.hget(cls._get_key(id[0]), 'token')
 
@@ -103,6 +104,6 @@ class User(Model):
             user_by_city_id[user.city_id].append(user)
         cities = Vk.call('database.getCitiesById', '', city_ids=','.join(user_by_city_id.keys()))
         for city in cities:
-            for user in user_by_city_id[city.get('id')]:
-                user.city = city.get('title')
+            for user in user_by_city_id[city.get('cid')]:
+                user.city = city.get('name')
                 user.save()
